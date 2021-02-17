@@ -6,7 +6,9 @@ Enzyme.configure({ adapter: new Adapter() });
 
 
 test('renders without error', () => {
-
+  const wrapper = shallow(<App />);
+  const appComponent = wrapper.find("[data-text='component-app']");
+  expect(appComponent.length).toBe(1);
 });
 
 test("renders button", () => {
@@ -22,5 +24,5 @@ test("counter starts at 0", ()  => {
 });
 
 test("clicking on button increments counter display", () => {
-  
+
 });
