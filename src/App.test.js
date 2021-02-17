@@ -5,7 +5,22 @@ import App from './App';
 Enzyme.configure({ adapter: new Adapter() });
 
 
-test('renders withour crashing', () => {
- const wrapper = shallow(<App />);
- 
+test('renders without error', () => {
+
+});
+
+test("renders button", () => {
+
+});
+
+test("renders counter display", () => {
+
+});
+
+test("counter starts at 0", ()  => {
+
+});
+
+test("clicking on button increments counter display", () => {
+  
 });
