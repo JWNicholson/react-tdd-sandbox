@@ -1,4 +1,4 @@
-# Test Driven Development with Create React app
+# Test Driven Development with React 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
