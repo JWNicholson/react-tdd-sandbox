@@ -33,12 +33,17 @@ test("renders counter display", () => {
 
 test("counter starts at 0", ()  => {
  const wrapper = setup();
- const count = findByTestAttr(wrapper, "count").text();
+ const count = findByTestAttr(wrapper, "count").text();//return is text, so be sure to compare against text and not in integer
  expect(count).toBe("0");
 });
 
-// test("clicking on button increments counter display", () => {
-//   const wrapper = setup();
-//   const counterDisplay = findByTestAttr(wrapper, "counter-display");
-//   expect (counterDisplay.length).toBe(1);
-// });
+test("clicking on button increments counter display", () => {
+  const wrapper = setup();
+  //find the button
+  const button = findByTestAttr(wrapper, "increment-button");
+  //click the button
+  button.simulate('click');
+  //find the display and test if the number was incremented
+  const count = findByTestAttr(wrapper, "count").text();
+  expect(count).toBe("1");
+});
