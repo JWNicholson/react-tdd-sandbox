@@ -33,47 +33,49 @@ test("renders counter display", () => {
 
 test("counter starts at 0", ()  => {
  const wrapper = setup();
- const count = findByTestAttr(wrapper, "count").text();//return is text, so be sure to compare against text and not in integer
+ const count = findByTestAttr(wrapper, "count").text();//Display is text, so be sure to compare against text and not in integer
  expect(count).toBe("0");
 });
 
 test("clicking on button increments counter display", () => {
   const wrapper = setup();
   //find the button
-  const button = findByTestAttr(wrapper, "increment-button");
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
   //click the button
-  button.simulate('click');
+  incrementButton.simulate('click');
   //find the display and test if the number was incremented
-  const count = findByTestAttr(wrapper, "count").text();
-  expect(count).toBe("1");
-});
+  const incrementCount = findByTestAttr(wrapper, "count").text();
+  expect(incrementCount).toBe("1");
 
-
-//test decrement button
-test("clicking on button decrements counter display", () => {
-
-  //find the button
-
-  //click the button
-
+  //test decrement button
+  //find decrement button
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+  //click decrement button
+  decrementButton.simulate('click');
   //find display and check if the count was decremented
-
+  const decrementCount = findByTestAttr(wrapper, "count").text();
+  expect(decrementCount).toBe("0");
 });
+
+
+
 
 // test decrement can't lower count below zero,display error message Can't Go Below Zero
 test("Counter won't go below zero", () => {
-
- //find counter
-
+  const wrapper = setup();
+  //find decrement button
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
  //click decrement button
-
+ decrementButton.simulate('click');
  //find display and check if counter will decrement when count 0
-
+  //find counter
+  const count = findByTestAttr(wrapper, "count").text();
+  expect(count).toBe("0");
  //check if message is visible when count is 0 and increment button is clicked
 
 });
 
-//test clears error on increment
-test("Clicking on increment button removes error", () => {
- //check if error message is invisible when increment button clicked after error is triggered
-});
+// //test clears error on increment
+// test("Clicking on increment button removes error", () => {
+//  //check if error message is invisible when increment button clicked after error is triggered
+// });
