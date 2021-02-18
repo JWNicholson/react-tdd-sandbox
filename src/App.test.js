@@ -47,3 +47,33 @@ test("clicking on button increments counter display", () => {
   const count = findByTestAttr(wrapper, "count").text();
   expect(count).toBe("1");
 });
+
+
+//test decrement button
+test("clicking on button decrements counter display", () => {
+
+  //find the button
+
+  //click the button
+
+  //find display and check if the count was decremented
+
+});
+
+// test decrement can't lower count below zero,display error message Can't Go Below Zero
+test("Counter won't go below zero", () => {
+
+ //find counter
+
+ //click decrement button
+
+ //find display and check if counter will decrement when count 0
+
+ //check if message is visible when count is 0 and increment button is clicked
+
+});
+
+//test clears error on increment
+test("Clicking on increment button removes error", () => {
+ //check if error message is invisible when increment button clicked after error is triggered
+});
