@@ -72,7 +72,8 @@ test("Counter won't go below zero", () => {
   const count = findByTestAttr(wrapper, "count").text();
   expect(count).toBe("0");
  //check if message is visible when count is 0 and increment button is clicked
-
+ const errorMessage = findByTestAttr(wrapper, "error-message");
+ expect(errorMessage.toExist).to.equal(true);
 });
 
 // //test clears error on increment
