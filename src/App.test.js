@@ -1,4 +1,4 @@
-import Enzyme, { shallow, ShallowWrapper } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import App from './App';
 
@@ -9,7 +9,11 @@ Enzyme.configure({ adapter: new Adapter() });
  * @function setup
  * @returns {ShallowWrapper}
  **/
-const setup = () => shallow(<App />);
+//const setup = () => shallow(<App />);
+
+const setup = (props = {}) => {
+  return shallow(<App {...props} />)
+}
 
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
 
@@ -59,5 +63,66 @@ describe('decrement button', () => {
     expect(button.length).toBe(1);
   });
 
+  test('clicking on decrement button decrements counter display when count state is greater than 0', () => {
+    const wrapper = setup();
 
+    //find and click increment button so counter is greater than 0
+    const incrementButton = findByTestAttr(wrapper, 'increment-button');
+    incrementButton.simulate('click');
+
+    //find and click decrement button
+    const decrementButton = findByTestAttr(wrapper, 'decrement-button');
+    decrementButton.simulate('click');
+
+    //find the count display and test value
+    const count = findByTestAttr(wrapper, 'count').text();
+    expect(count).toBe("0");
+  });
+});
+
+describe('error when counter goes below 0', () => {
+  test('error does not show when not needed', () => {
+    const wrapper = setup();
+    const errorDiv = findByTestAttr(wrapper, 'error-message');
+
+    //enzyme .hasClass to check for .hidden class
+    const errorHasHiddenClass = errorDiv.hasClass('hidden');
+    console.log(wrapper.debug());
+    expect(errorHasHiddenClass).toBe(true);
+  });
+
+  describe('counter is 0 and decrement is clicked', () => {
+    //scope wrapper to the describe so it can be used in beforeEach and tests
+    let wrapper
+    beforeEach(() => {
+      //default counter value of 0 works here, no need to set
+      wrapper = setup();
+      //find and click button
+      const button = findByTestAttr(wrapper, 'decrement-button');
+      button.simulate('click');
+    });
+
+    test('error shows', () => {
+      //check class of error message
+      const errorDiv = findByTestAttr(wrapper, 'error-message');
+      const errorHasHiddenClass = errorDiv.hasClass('hidden');
+      expect(errorHasHiddenClass).toBe(false);
+    });
+
+    test('counter still displays 0', () => {
+      const count = findByTestAttr(wrapper, 'count').text();
+      expect(count).toBe("0");
+    });
+
+    test('clicking increment clears error', () => {
+      //find and click increment button
+      const incrementButton = findByTestAttr(wrapper, 'increment-button');
+      incrementButton.simulate('click');
+
+      //check class of error message
+      const errorDiv = findByTestAttr(wrapper, 'error-message');
+      const errorHasHiddenClass = errorDiv.hasClass('hidden');
+      expect(errorHasHiddenClass).toBe(true);
+    });
+  });
 });
