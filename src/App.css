@@ -2,4 +2,12 @@
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
 
+.error {
+  font-size: 4rem;
+  color: red;
+  text-shadow: 2px 2px rgba(119, 136, 153);
+}

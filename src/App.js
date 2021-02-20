@@ -1,34 +1,38 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 
 function App() {
   const [count, setCount] = useState(0);
-  const [show, setShow] = useState(false)
+  const [showError, setShowError] = useState(false);
+
 
   const incrementHandler = () => {
-    setCount(prevCount => prevCount + 1)
+
+    if (showError) { setShowError(false); }
+    setCount(prevCount => prevCount + 1);
+
   }
+
   const decrementHandler = () => {
 
-
     if (count > 0) {
-      alert("fudge");
-      setCount(prevCount => prevCount - 1)
-    } else if (count === 0) {
-      toggleError();
+      setCount(prevCount => prevCount - 1);
+    } else {
+      setShowError(true)
     }
+
   }
 
-  const toggleError = () => {
-    setShow(true)
-  }
 
   return (
-    <div className="App" data-test="component-app">
-      <h1 data-test="counter-display">Der Zählung ist&nbsp;
-      <span data-test="count">{count}</span>
-      </h1>
+    <div data-test="component-app" className="App" >
+      <h1 data-test="counter-display">Der Zählung is&nbsp;<span data-test="count">{count}</span></h1>
+
+      <div data-test="error-message" className={`error ${showError ? '' : 'hidden'}`}>
+        The counter cannot go below 0!!
+      </div>
+
       <button
         data-test="increment-button"
         onClick={incrementHandler}
@@ -39,15 +43,9 @@ function App() {
         onClick={decrementHandler}
       >Dekrement</button>
 
-      <div data-test="error-message">
-        {
-          show ?
-            <h2 style={{ color: "firebrick" }}>Counter will not go below 0</h2>
-            : null
-        }
-      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
