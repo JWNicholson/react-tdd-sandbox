@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PageTitle from '../PageTitle/PageTitle';
 
 const ClickCounter = () => {
     const [count, setCount] = useState(0);
@@ -23,6 +24,8 @@ const ClickCounter = () => {
     }
     return (
         <div>
+            <PageTitle title="Klicken Sie auf Zähler" />
+
             <h1 data-test="counter-display">Der Zählung is&nbsp;<span data-test="count">{count}</span></h1>
 
             <div data-test="error-message" className={`error ${showError ? '' : 'hidden'}`}>
