@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Congrats = (props) => {
@@ -7,7 +8,6 @@ const Congrats = (props) => {
     return (
       <div data-test="component-congrats">
         <span data-test="congrats-message">
-
           Herzliche Glückwünsche!&nbsp;
           Du bist nicht so dumm wie du aussiehst.
         </span>
@@ -18,6 +18,10 @@ const Congrats = (props) => {
       <div data-test="component-congrats" />
     )
   }
+};
+
+Congrats.propTypes = {
+  success: PropTypes.bool.isRequired,
 }
 
 

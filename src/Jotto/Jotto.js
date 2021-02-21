@@ -1,6 +1,6 @@
 import React from 'react'
-import PageTitle from '../PageTitle/PageTitle'
-import { Congrats } from './Congrats/Congrats'
+import PageTitle from '../PageTitle/PageTitle';
+import Congrats from './Congrats/Congrats';
 import './Jotto.css'
 
 const Jotto = () => {
