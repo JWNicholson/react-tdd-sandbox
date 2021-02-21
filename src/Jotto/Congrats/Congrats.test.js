@@ -1,10 +1,9 @@
-import Enzyme, { shallow, ShallowWrapper } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { shallow, ShallowWrapper } from 'enzyme';
 
 import { findByTestAttr, checkProps } from '../../tests/testUtils';
 import Congrats from './Congrats';
 
-Enzyme.configure({ adapter: new Adapter() });
+
 
 const defaultProps = { success: false };
 
